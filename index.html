@@ -1,1305 +1,199 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Андрей Комков — проджект-менеджер, digital, ai_builder, нутрициолог</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #050a0e;
-  --bg2: #080e14;
-  --bg3: #0c1520;
-  --green: #00e87a;
-  --green2: #00ff88;
-  --green-dim: rgba(0,232,122,0.08);
-  --green-border: rgba(0,232,122,0.18);
-  --white: #e8f0e8;
-  --gray: #4a6a5a;
-  --gray2: #2a3a2e;
-  --text: #8ab09a;
-}
-
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-
-body {
-  background: var(--bg);
-  color: var(--white);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 18px;
-  line-height: 1.75;
-  overflow-x: hidden;
-  cursor: crosshair;
-}
-
-/* GRID BACKGROUND */
-body::before {
-  content:'';
-  position:fixed;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(0,232,122,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,232,122,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events:none;
-  z-index:0;
-}
-
-/* SCAN LINE */
-body::after {
-  content:'';
-  position:fixed;
-  left:0;right:0;
-  height:2px;
-  background: linear-gradient(90deg, transparent, rgba(0,232,122,0.4), transparent);
-  animation: scan 8s linear infinite;
-  pointer-events:none;
-  z-index:999;
-}
-@keyframes scan {
-  0%{top:-2px;}
-  100%{top:100vh;}
-}
-
-/* NAV */
-nav {
-  position:fixed;
-  top:0;left:0;right:0;
-  z-index:500;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 48px;
-  background:rgba(5,10,14,0.92);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--green-border);
-}
-
-.nav-logo {
-  font-family:'Space Mono', monospace;
-  font-size:14px;
-  color:var(--green);
-  text-decoration:none;
-  letter-spacing:0.1em;
-}
-
-.nav-logo::before { content:'> '; opacity:.5; }
-
-.nav-links {
-  display:flex;
-  gap:32px;
-  list-style:none;
-}
-
-.nav-links a {
-  font-family:'Space Mono', monospace;
-  font-size:11px;
-  color:var(--gray);
-  text-decoration:none;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  transition:color .2s;
-}
-
-.nav-links a::before { content:'./'; opacity:.4; }
-.nav-links a:hover { color:var(--green); }
-
-.burger {
-  display:none;
-  flex-direction:column;
-  gap:5px;
-  cursor:pointer;
-}
-.burger span {
-  display:block;
-  width:22px;
-  height:1px;
-  background:var(--green);
-}
-
-.mobile-menu {
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(5,10,14,0.98);
-  z-index:400;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:36px;
-}
-.mobile-menu.open { display:flex; }
-.mobile-menu a {
-  font-family:'Space Mono', monospace;
-  font-size:20px;
-  color:var(--green);
-  text-decoration:none;
-  letter-spacing:0.1em;
-}
-
-/* HERO */
-#hero {
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:120px 48px 80px;
-  position:relative;
-  z-index:1;
-}
-
-.hero-terminal {
-  font-family:'Space Mono', monospace;
-  font-size:11px;
-  color:var(--gray);
-  letter-spacing:0.08em;
-  margin-bottom:32px;
-  line-height:2;
-}
-
-.hero-terminal .blink {
-  display:inline-block;
-  width:8px;
-  height:14px;
-  background:var(--green);
-  animation:blink 1s step-end infinite;
-  margin-left:4px;
-  vertical-align:middle;
-}
-@keyframes blink { 50%{opacity:0;} }
-
-.hero-name {
-  font-family:'Space Mono', monospace;
-  font-size:clamp(36px,6vw,80px);
-  font-weight:700;
-  line-height:1.05;
-  letter-spacing:-0.02em;
-  color:var(--white);
-  opacity:0;
-  animation:fadeUp .6s .4s forwards;
-}
-
-.hero-name .green { color:var(--green); }
-
-.hero-role {
-  font-family:'Space Grotesk', sans-serif;
-  font-size:clamp(16px,2vw,20px);
-  color:var(--text);
-  margin-top:20px;
-  opacity:0;
-  animation:fadeUp .6s .6s forwards;
-}
-
-.hero-role span {
-  color:var(--green);
-  opacity:.7;
-  margin:0 8px;
-}
-
-.hero-desc {
-  max-width:560px;
-  font-size:18px;
-  color:var(--text);
-  margin-top:28px;
-  line-height:1.8;
-  opacity:0;
-  animation:fadeUp .6s .8s forwards;
-}
-
-.hero-cta {
-  display:flex;
-  gap:16px;
-  margin-top:48px;
-  flex-wrap:wrap;
-  opacity:0;
-  animation:fadeUp .6s 1s forwards;
-}
-
-.btn-primary {
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:13px 28px;
-  background:var(--green);
-  color:#050a0e;
-  font-family:'Space Mono', monospace;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  text-decoration:none;
-  transition:background .2s, transform .2s;
-}
-.btn-primary:hover { background:var(--green2); transform:translateY(-2px); }
-
-.btn-ghost {
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:13px 28px;
-  border:1px solid var(--green-border);
-  color:var(--green);
-  font-family:'Space Mono', monospace;
-  font-size:11px;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  text-decoration:none;
-  transition:border-color .2s, background .2s;
-}
-.btn-ghost:hover { border-color:var(--green); background:var(--green-dim); }
-
-.hero-coords {
-  position:absolute;
-  bottom:40px;
-  right:48px;
-  font-family:'Space Mono', monospace;
-  font-size:10px;
-  color:var(--gray);
-  letter-spacing:0.1em;
-  line-height:2;
-  text-align:right;
-  opacity:0;
-  animation:fadeIn 1s 1.2s forwards;
-}
-
-/* SECTIONS */
-section {
-  position:relative;
-  z-index:1;
-  padding:100px 48px;
-  max-width:1100px;
-  margin:0 auto;
-}
-
-.sec-full {
-  max-width:100%;
-  border-top:1px solid var(--green-border);
-}
-
-.sec-full .inner {
-  max-width:1100px;
-  margin:0 auto;
-  padding:100px 48px;
-}
-
-.sec-label {
-  font-family:'Space Mono', monospace;
-  font-size:10px;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:var(--green);
-  margin-bottom:12px;
-  opacity:.7;
-}
-
-.sec-label::before { content:'['; }
-.sec-label::after { content:']'; }
-
-h2 {
-  font-family:'Space Mono', monospace;
-  font-size:clamp(28px,3.5vw,46px);
-  font-weight:700;
-  color:var(--white);
-  line-height:1.15;
-  margin-bottom:48px;
-  letter-spacing:-0.02em;
-}
-
-h2 .accent { color:var(--green); }
-
-/* ABOUT */
-#about { border-top:1px solid var(--green-border); }
-
-.about-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:64px;
-  align-items:start;
-}
-
-.about-text p {
-  font-size:18px;
-  color:var(--text);
-  line-height:1.8;
-  margin-bottom:20px;
-}
-
-.about-code {
-  background:var(--bg3);
-  border:1px solid var(--green-border);
-  padding:28px;
-  font-family:'Space Mono', monospace;
-  font-size:14px;
-  color:var(--text);
-  line-height:2;
-  margin:28px 0;
-}
-
-.about-code .key { color:var(--green); }
-.about-code .val { color:#7abf9a; }
-.about-code .num { color:#e87a00; }
-.about-code .str { color:#7ab0bf; }
-
-.stats-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:2px;
-}
-
-.stat {
-  background:var(--bg3);
-  border:1px solid var(--green-border);
-  padding:24px 20px;
-  transition:border-color .25s, background .25s;
-}
-
-.stat:hover {
-  border-color:rgba(0,232,122,0.4);
-  background:var(--green-dim);
-}
-
-.stat-n {
-  font-family:'Space Mono', monospace;
-  font-size:40px;
-  font-weight:700;
-  color:var(--green);
-  line-height:1;
-  margin-bottom:8px;
-}
-
-.stat-l {
-  font-size:11px;
-  letter-spacing:0.1em;
-  color:var(--gray);
-  text-transform:uppercase;
-}
-
-/* SERVICES */
-.services-grid {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:2px;
-}
-
-.svc {
-  background:var(--bg3);
-  border:1px solid var(--green-border);
-  padding:40px 36px;
-  position:relative;
-  overflow:hidden;
-  transition:border-color .3s;
-}
-
-.svc::before {
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:1px;
-  background:linear-gradient(90deg, transparent, var(--green), transparent);
-  opacity:0;
-  transition:opacity .3s;
-}
-
-.svc:hover { border-color:rgba(0,232,122,0.4); }
-.svc:hover::before { opacity:1; }
-
-.svc-n {
-  font-family:'Space Mono', monospace;
-  font-size:10px;
-  color:var(--green);
-  opacity:.5;
-  letter-spacing:0.2em;
-  margin-bottom:20px;
-}
-
-.svc-title {
-  font-family:'Space Mono', monospace;
-  font-size:18px;
-  font-weight:700;
-  color:var(--white);
-  margin-bottom:16px;
-}
-
-.svc-text {
-  font-size:16px;
-  color:var(--text);
-  line-height:1.8;
-}
-
-.svc-tags {
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:20px;
-}
-
-.svc-tag {
-  font-family:'Space Mono', monospace;
-  font-size:9px;
-  color:var(--green);
-  border:1px solid var(--green-border);
-  padding:3px 8px;
-  letter-spacing:0.1em;
-  opacity:.8;
-}
-
-/* TIMELINE */
-.timeline {
-  position:relative;
-  padding-left:40px;
-}
-
-.timeline::before {
-  content:'';
-  position:absolute;
-  left:0;top:0;bottom:0;
-  width:1px;
-  background:linear-gradient(180deg, var(--green), rgba(0,232,122,0.05));
-}
-
-.tl-item {
-  margin-bottom:48px;
-  position:relative;
-  opacity:0;
-  transform:translateX(-16px);
-  transition:opacity .5s, transform .5s;
-}
-
-.tl-item.visible { opacity:1; transform:translateX(0); }
-
-.tl-dot {
-  position:absolute;
-  left:-44px;
-  top:4px;
-  width:8px;
-  height:8px;
-  background:var(--green);
-  border:2px solid var(--bg);
-}
-
-.tl-year {
-  font-family:'Space Mono', monospace;
-  font-size:13px;
-  color:var(--green);
-  letter-spacing:0.15em;
-  margin-bottom:6px;
-  opacity:.7;
-}
-
-.tl-title {
-  font-family:'Space Mono', monospace;
-  font-size:18px;
-  font-weight:700;
-  color:var(--white);
-  margin-bottom:8px;
-}
-
-.tl-text {
-  font-size:16px;
-  color:var(--text);
-  line-height:1.8;
-  max-width:580px;
-}
-
-/* PERSONAL */
-.personal-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:64px;
-  align-items:start;
-}
-
-.personal-text p {
-  font-size:18px;
-  color:var(--text);
-  line-height:1.85;
-  margin-bottom:20px;
-}
-
-.personal-quote {
-  font-family:'Space Mono', monospace;
-  font-size:15px;
-  color:var(--green);
-  border-left:2px solid var(--green);
-  padding:16px 24px;
-  background:var(--green-dim);
-  line-height:1.8;
-  margin:28px 0;
-  opacity:.9;
-}
-
-.skills-block {
-  background:var(--bg3);
-  border:1px solid var(--green-border);
-  padding:32px;
-}
-
-.skills-title {
-  font-family:'Space Mono', monospace;
-  font-size:10px;
-  color:var(--green);
-  letter-spacing:0.15em;
-  margin-bottom:20px;
-  opacity:.7;
-}
-
-.skill-row {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:14px;
-}
-
-.skill-name {
-  font-family:'Space Mono', monospace;
-  font-size:14px;
-  color:var(--text);
-  letter-spacing:0.05em;
-}
-
-.skill-bar-wrap {
-  width:140px;
-  height:2px;
-  background:var(--gray2);
-  position:relative;
-  overflow:hidden;
-}
-
-.skill-bar {
-  position:absolute;
-  left:0;top:0;bottom:0;
-  background:var(--green);
-  width:0;
-  transition:width 1.2s ease;
-}
-
-.skill-bar-wrap.loaded .skill-bar {
-  width:var(--w);
-}
-
-/* PHOTO */
-.photo-wrap {
-  position:relative;
-  width:100%;
-  max-width:320px;
-}
-
-.photo-frame {
-  width:100%;
-  aspect-ratio:3/4;
-  background:var(--bg3);
-  border:1px solid var(--green-border);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-}
-
-.photo-frame img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.photo-placeholder {
-  font-family:'Space Mono',monospace;
-  font-size:11px;
-  color:var(--gray);
-  letter-spacing:0.1em;
-  text-align:center;
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  height:100%;
-  background:var(--bg3);
-}
-
-.photo-corner {
-  position:absolute;
-  width:16px;height:16px;
-  border-color:var(--green);
-  border-style:solid;
-  opacity:.5;
-}
-.photo-corner.tl{top:8px;left:8px;border-width:1px 0 0 1px;}
-.photo-corner.tr{top:8px;right:8px;border-width:1px 1px 0 0;}
-.photo-corner.bl{bottom:8px;left:8px;border-width:0 0 1px 1px;}
-.photo-corner.br{bottom:8px;right:8px;border-width:0 1px 1px 0;}
-
-/* CASE STUDY */
-.case-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:2px;
-  margin-top:40px;
-}
-
-.case-screen {
-  background:var(--bg3);
-  border:1px solid var(--green-border);
-  aspect-ratio:9/16;
-  max-height:400px;
-  overflow:hidden;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.case-screen img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:top;
-}
-
-.case-screen-placeholder {
-  font-family:'Space Mono',monospace;
-  font-size:10px;
-  color:var(--gray);
-  letter-spacing:0.1em;
-  text-align:center;
-  padding:16px;
-}
-
-.case-screen .screen-label {
-  position:absolute;
-  bottom:0;left:0;right:0;
-  background:rgba(5,10,14,0.85);
-  padding:8px 12px;
-  font-family:'Space Mono',monospace;
-  font-size:10px;
-  color:var(--green);
-  letter-spacing:0.1em;
-  border-top:1px solid var(--green-border);
-}
-
-.case-info {
-  padding:32px;
-  background:var(--bg3);
-  border:1px solid var(--green-border);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:16px;
-}
-
-.case-tag {
-  font-family:'Space Mono',monospace;
-  font-size:9px;
-  color:var(--green);
-  border:1px solid var(--green-border);
-  padding:4px 10px;
-  letter-spacing:0.1em;
-  display:inline-block;
-  width:fit-content;
-}
-
-.case-title {
-  font-family:'Space Mono',monospace;
-  font-size:18px;
-  font-weight:700;
-  color:var(--white);
-  line-height:1.3;
-}
-
-.case-desc {
-  font-size:16px;
-  color:var(--text);
-  line-height:1.8;
-}
-
-.case-features {
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin-top:4px;
-}
-
-.case-feature {
-  font-family:'Space Mono',monospace;
-  font-size:14px;
-  color:var(--text);
-  padding-left:16px;
-  position:relative;
-}
-
-.case-feature::before {
-  content:'→';
-  position:absolute;
-  left:0;
-  color:var(--green);
-  font-size:10px;
-}
-
-.case-investor {
-  margin-top:8px;
-  padding:16px;
-  background:rgba(0,232,122,0.05);
-  border:1px solid rgba(0,232,122,0.25);
-  font-family:'Space Mono',monospace;
-  font-size:14px;
-  color:var(--green);
-  letter-spacing:0.05em;
-  line-height:1.7;
-}
-
-@media(max-width:900px){
-  .case-grid{grid-template-columns:1fr;}
-  .photo-wrap{max-width:100%;}
-  .photo-frame{aspect-ratio:1/1;}
-}
-.contact-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:64px;
-}
-
-.contact-text p {
-  font-size:18px;
-  color:var(--text);
-  line-height:1.85;
-  margin-bottom:28px;
-}
-
-.contact-links {
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
-
-.contact-link {
-  display:flex;
-  align-items:center;
-  gap:20px;
-  padding:18px 20px;
-  background:var(--bg3);
-  border:1px solid var(--green-border);
-  text-decoration:none;
-  transition:border-color .2s, background .2s;
-}
-
-.contact-link:hover {
-  border-color:rgba(0,232,122,0.4);
-  background:var(--green-dim);
-}
-
-.contact-icon {
-  font-family:'Space Mono', monospace;
-  font-size:18px;
-  color:var(--green);
-  width:32px;
-  flex-shrink:0;
-}
-
-.contact-type {
-  font-family:'Space Mono', monospace;
-  font-size:9px;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--gray);
-  margin-bottom:2px;
-}
-
-.contact-val {
-  font-family:'Space Mono', monospace;
-  font-size:16px;
-  color:var(--white);
-}
-
-.contact-box {
-  background:var(--bg3);
-  border:1px solid var(--green-border);
-  padding:40px;
-}
-
-.contact-box-title {
-  font-family:'Space Mono', monospace;
-  font-size:18px;
-  color:var(--white);
-  margin-bottom:20px;
-  line-height:1.4;
-}
-
-.contact-box p {
-  font-size:16px;
-  color:var(--text);
-  line-height:1.8;
-  margin-bottom:12px;
-}
-
-.status-dot {
-  display:inline-block;
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:var(--green);
-  margin-right:8px;
-  animation:pulse 2s infinite;
-  vertical-align:middle;
-}
-
-@keyframes pulse {
-  0%,100%{opacity:1;}
-  50%{opacity:.3;}
-}
-
-/* FOOTER */
-footer {
-  border-top:1px solid var(--green-border);
-  padding:24px 48px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:relative;
-  z-index:1;
-}
-
-.footer-l {
-  font-family:'Space Mono', monospace;
-  font-size:12px;
-  color:var(--gray);
-}
-
-.footer-r {
-  font-family:'Space Mono', monospace;
-  font-size:10px;
-  color:var(--gray2);
-  letter-spacing:0.1em;
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp {
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-@keyframes fadeIn {
-  from{opacity:0;}
-  to{opacity:1;}
-}
-
-.reveal {
-  opacity:0;
-  transform:translateY(20px);
-  transition:opacity .5s, transform .5s;
-}
-
-.reveal.visible {
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  nav{padding:16px 24px;}
-  .nav-links{display:none;}
-  .burger{display:flex;}
-
-  section{padding:72px 24px;}
-  .sec-full .inner{padding:72px 24px;}
-  #hero{padding:100px 24px 72px;}
-
-  .about-grid,
-  .personal-grid,
-  .contact-grid{grid-template-columns:1fr;gap:40px;}
-
-  .services-grid{grid-template-columns:1fr;}
-  .stats-grid{grid-template-columns:1fr 1fr;}
-
-  .hero-coords{right:24px;}
-  footer{flex-direction:column;gap:8px;text-align:center;padding:20px;}
-}
-
-@media(max-width:480px){
-  .hero-name{font-size:32px;}
-  .hero-cta{flex-direction:column;}
-  .btn-primary,.btn-ghost{justify-content:center;}
-  h2{font-size:24px;}
-  .stats-grid{grid-template-columns:1fr;}
-  .skill-bar-wrap{width:100px;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Автоматизация бизнеса · Telegram-боты, AI-консультанты, сайты под ключ — Андрей Комков</title>
+  <meta name="description" content="Автоматизация бизнеса под ключ: разработка Telegram-ботов, AI-консультантов для сайта и веб-приложений. Автоматизация продаж, поддержки клиентов и обработки заявок. Бот для записи клиентов, создание сайта под ключ.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav id="nav">
-  <a class="nav-logo" href="#hero">komkov.sys</a>
-  <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#services">services</a></li>
-    <li><a href="#timeline">log</a></li>
-    <li><a href="#personal">values</a></li>
-    <li><a href="#case">project</a></li>
-    <li><a href="#contact">connect</a></li>
-  </ul>
-  <div class="burger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
+  <!-- ======================= NAV ======================= -->
+  <nav class="nav">
+    <a href="#hero" class="nav__brand">Андрей Комков</a>
+    <div class="nav__links">
+      <a href="#services">Услуги</a>
+      <a href="#solutions">Решения</a>
+      <a href="#process">Как работаю</a>
+      <a href="#expert">Обо мне</a>
+      <a href="#faq">Вопросы</a>
+    </div>
+    <a href="https://t.me/komkof" target="_blank" class="btn btn--primary btn--sm">Обсудить задачу</a>
+  </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="closeMenu()">about</a>
-  <a href="#services" onclick="closeMenu()">services</a>
-  <a href="#timeline" onclick="closeMenu()">log</a>
-  <a href="#personal" onclick="closeMenu()">values</a>
-  <a href="#case" onclick="closeMenu()">project</a>
-  <a href="#contact" onclick="closeMenu()">connect</a>
-</div>
+  <!-- ======================= HERO ======================= -->
+  <section id="hero" class="hero">
+    <div class="badge reveal">
+      <span class="dot"></span>
+      Автоматизация бизнеса · Telegram-боты · AI
+    </div>
+    <h1 class="hero__title reveal" data-delay="0.05"><span class="accent">Автоматизирую продажи и обработку заявок</span> с помощью Telegram-ботов,<br><span class="hero__keep">Ai-агентов</span> и веб-приложений</h1>
+    <p class="hero__lead reveal" data-delay="0.1">Беру рутину на себя: заявки обрабатываются сами, клиенты получают ответы мгновенно, а вы видите цифры и занимаетесь развитием.</p>
+    <div class="hero__actions reveal" data-delay="0.15">
+      <a href="https://t.me/komkof" target="_blank" class="btn btn--primary">Получить бесплатную консультацию →</a>
+      <a href="#services" class="btn btn--ghost">Посмотреть услуги</a>
+    </div>
+    <div class="hero__trust reveal" data-delay="0.2">
+      <span>Запуск за 1–2 недели</span>
+      <span>Без увеличения штата</span>
+      <span>25 лет в бизнесе и digital</span>
+    </div>
+  </section>
 
-<!-- HERO -->
-<section id="hero" style="max-width:100%;padding-left:48px;padding-right:48px;">
-  <div class="hero-terminal">
-    <div>$ init —profile komkov.andrey</div>
-    <div style="color:rgba(0,232,122,0.5)">✓ loading 25 years of experience...</div>
-    <div style="color:rgba(0,232,122,0.5)">✓ skills: project_mgmt, ai, automation, systems</div>
-    <div>$ ready<span class="blink"></span></div>
-  </div>
+  <!-- ======================= PAIN ======================= -->
+  <section class="pain">
+    <div class="pain__inner">
+      <div class="section-head reveal">
+        <div class="eyebrow">Знакомо?</div>
+        <h2 class="h2">Бизнес тормозит из-за рутины, которую давно пора автоматизировать</h2>
+      </div>
+      <div class="pain__grid">
+        <div class="paincard reveal"><div class="paincard__icon">⏱️</div><h3>Заявки теряются</h3><p>Сообщения из разных каналов, менеджеры не успевают, часть клиентов уходит к конкурентам.</p></div>
+        <div class="paincard reveal" data-delay="0.06"><div class="paincard__icon">💬</div><h3>Поддержка съедает время</h3><p>Одни и те же вопросы по кругу. Сотрудники отвечают вручную вместо работы с клиентами.</p></div>
+        <div class="paincard reveal" data-delay="0.12"><div class="paincard__icon">📵</div><h3>Запись — это хаос</h3><p>Звонки, переписки, забытые брони. Клиент хочет записаться сам — в пару касаний и в любое время.</p></div>
+      </div>
+    </div>
+  </section>
 
-  <h1 class="hero-name">АНДРЕЙ<br><span class="green">КОМКОВ</span></h1>
+  <!-- ======================= SERVICES ======================= -->
+  <section id="services" class="services">
+    <div class="services__inner">
+      <div class="section-head reveal">
+        <div class="eyebrow">Услуги</div>
+        <h2 class="h2 h2--xl">Что я делаю для бизнеса</h2>
+        <p class="lead lead--center">Решения под задачу — от Telegram-бота до сайта с AI-консультантом. Всё под ключ: продумываю логику, разрабатываю, подключаю к вашим системам и сопровождаю.</p>
+      </div>
+      <div class="services__grid">
+        <article class="svc reveal">
+          <div class="svc__n">01</div>
+          <h3 class="svc__title">Разработка Telegram-бота для бизнеса</h3>
+          <p class="svc__text">Боты, которые продают, консультируют и принимают заявки 24/7. Приём оплат, интеграция с CRM, рассылки, авто-воронки. Telegram-бот для бизнеса заменяет менеджера на типовых задачах.</p>
+          <div class="chips"><span>приём заявок</span><span>оплаты</span><span>CRM</span></div>
+        </article>
+        <article class="svc reveal" data-delay="0.06">
+          <div class="svc__n">02</div>
+          <h3 class="svc__title">AI-консультант для сайта</h3>
+          <p class="svc__text">Умный помощник, который отвечает на вопросы клиентов вашими словами, подбирает товар или услугу и доводит до заявки. Сайт с AI-консультантом конвертирует посетителей в обращения, пока вы спите.</p>
+          <div class="chips"><span>ответы 24/7</span><span>квалификация лидов</span><span>на базе знаний</span></div>
+        </article>
+        <article class="svc reveal">
+          <div class="svc__n">03</div>
+          <h3 class="svc__title">Создание сайта под ключ</h3>
+          <p class="svc__text">Современные веб-приложения и лендинги, которые быстро грузятся и приносят заявки. Дизайн, разработка, формы, аналитика и при необходимости — встроенный AI-консультант. Создание сайта под ключ без долгих согласований.</p>
+          <div class="chips"><span>лендинги</span><span>веб-приложения</span><span>аналитика</span></div>
+        </article>
+        <article class="svc reveal" data-delay="0.06">
+          <div class="svc__n">04</div>
+          <h3 class="svc__title">Автоматизация бизнес-процессов</h3>
+          <p class="svc__text">Связываю сайт, мессенджеры, CRM и таблицы в единую систему. Автоматизация процессов убирает ручной труд: заявка сама попадает в нужный отдел, клиент получает подтверждение, вы — отчёт.</p>
+          <div class="chips"><span>amoCRM</span><span>интеграции</span><span>авто-воронки</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-  <div class="hero-role">
-    project_manager <span>/</span> operations <span>/</span> digital <span>/</span> ai_builder
-  </div>
-
-  <p class="hero-desc">
-    25 лет строю системы — от event-агентств до ИИ-приложений. Вижу детали, которые другие пропускают. Превращаю хаос в работающий процесс.
-  </p>
-
-  <div class="hero-cta">
-    <a href="https://t.me/komkof" target="_blank" class="btn-primary">→ connect()</a>
-    <a href="#services" class="btn-ghost">./services</a>
-  </div>
-
-  <div class="hero-coords">
-    <div>LAT 43.5855° N</div>
-    <div>LON 39.7231° E</div>
-    <div>SIRIUS · RU</div>
-    <div style="margin-top:8px;color:rgba(0,232,122,0.5)">STATUS: <span style="color:var(--green)">OPEN</span></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="sec-label reveal">profile</div>
-  <h2 class="reveal">Системный<br><span class="accent">подход</span> — везде</h2>
-  <div class="about-grid">
-    <div style="display:flex;flex-direction:column;gap:32px;">
-      <div class="photo-wrap reveal">
-        <div class="photo-frame">
-          <img src="photo.jpg" alt="Андрей Комков" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
-          <div class="photo-corner tl"></div>
-          <div class="photo-corner tr"></div>
-          <div class="photo-corner bl"></div>
-          <div class="photo-corner br"></div>
+  <!-- ======================= SOLUTIONS ======================= -->
+  <section id="solutions" class="solutions">
+    <div class="solutions__inner">
+      <div class="section-head reveal">
+        <div class="eyebrow">Решения под задачу</div>
+        <h2 class="h2 h2--xl">Что чаще всего автоматизирую</h2>
+      </div>
+      <div class="solutions__grid">
+        <div class="solcard reveal">
+          <h3>Бот для записи клиентов</h3>
+          <p>Клиент выбирает услугу, мастера и удобное время прямо в Telegram. Напоминания и переносы — автоматически. Меньше пропусков, ноль ручной переписки. Подходит салонам, клиникам, студиям, сервисам.</p>
+        </div>
+        <div class="solcard reveal" data-delay="0.06">
+          <h3>Автоматизация продаж</h3>
+          <p>Лид с сайта или из мессенджера сразу попадает в CRM, прогревается авто-воронкой и доходит до сделки. Менеджер видит только горячие заявки — конверсия растёт без расширения отдела.</p>
+        </div>
+        <div class="solcard reveal">
+          <h3>Автоматизация поддержки клиентов</h3>
+          <p>AI-консультант и бот закрывают типовые вопросы мгновенно и круглосуточно, а сложные — передают живому сотруднику. Нагрузка на поддержку падает, клиенты довольны скоростью.</p>
+        </div>
+        <div class="solcard reveal" data-delay="0.06">
+          <h3>Обработка заявок без потерь</h3>
+          <p>Все обращения из сайта, Telegram и соцсетей собираются в одном месте, распределяются и фиксируются. Ни одна заявка не теряется, у каждой — ответственный и статус.</p>
         </div>
       </div>
     </div>
-    <div>
-      <div class="about-text reveal">
-        <p>Прошёл через event, digital-агентство, общепит и логистику. Где бы ни оказался — первым делом вижу систему и выстраиваю процессы. Умею руководить проектами и командами в условиях неопределённости. Обладаю техническим бэкграундом.</p>
-        <div class="about-code">
-          <div><span class="key">name</span>: <span class="str">"Комков Андрей"</span></div>
-          <div><span class="key">age</span>: <span class="num">45</span></div>
-          <div><span class="key">location</span>: <span class="str">"Сириус, RU"</span></div>
-          <div><span class="key">domains</span>: <span class="str">["event","digital","food","logistics","AI"]</span></div>
-          <div><span class="key">superpower</span>: <span class="str">"sees_what_others_miss"</span></div>
-          <div><span class="key">status</span>: <span class="val">open_to_work</span> <span style="color:var(--green)">✓</span></div>
-        </div>
-        <p>Не боюсь заходить в новые области, ищу интересные задачи. Сейчас строю собственное Ai-приложение в сфере здоровья.</p>
-      </div>
-      <div class="stats-grid reveal" style="margin-top:32px;">
-        <div class="stat">
-          <div class="stat-n">5+</div>
-          <div class="stat-l">сфер опыта</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">5+</div>
-          <div class="stat-l">запущено бизнесов</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">до 5K</div>
-          <div class="stat-l">участников мероприятий</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">−40 кг</div>
-          <div class="stat-l">личная трансформация</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- SERVICES -->
-<span id="services" style="display:block;position:relative;top:-80px;visibility:hidden;"></span>
-<div class="sec-full">
-<div class="inner">
-  <div class="sec-label reveal">./services</div>
-  <h2 class="reveal">Чем могу<br><span class="accent">помочь</span></h2>
-  <div class="services-grid">
-    <div class="svc reveal">
-      <div class="svc-n">function_01</div>
-      <div class="svc-title">Управление проектами</div>
-      <p class="svc-text">Беру хаос и превращаю в работающий процесс. Запускаю с нуля, выстраиваю команды, контролирую результат.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">PM</span>
-        <span class="svc-tag">roadmap</span>
-        <span class="svc-tag">team_lead</span>
+  <!-- ======================= PROCESS ======================= -->
+  <section id="process" class="process">
+    <div class="process__inner">
+      <div class="section-head reveal">
+        <div class="eyebrow">Как работаю</div>
+        <h2 class="h2 h2--xl">Прозрачно и быстро</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="step__n">01</div><div><h3>Разбираем задачу</h3><p>Бесплатная консультация: смотрю процессы, нахожу, что отнимает время и деньги, и предлагаю решение с понятным результатом.</p></div></div>
+        <div class="step reveal"><div class="step__n">02</div><div><h3>Согласуем план и сроки</h3><p>Фиксируем объём, этапы и стоимость. Никаких размытых ТЗ — вы заранее понимаете, что и когда получите.</p></div></div>
+        <div class="step reveal"><div class="step__n">03</div><div><h3>Разрабатываю и подключаю</h3><p>Создаю бота, AI-консультанта или сайт, интегрирую с вашими системами и тестирую на реальных сценариях.</p></div></div>
+        <div class="step step--last reveal"><div class="step__n">04</div><div><h3>Запускаю и сопровождаю</h3><p>Помогаю с запуском, обучаю команду, остаюсь на связи и развиваю систему по мере роста бизнеса.</p></div></div>
       </div>
     </div>
-    <div class="svc reveal">
-      <div class="svc-n">function_02</div>
-      <div class="svc-title">Операционный менеджмент</div>
-      <p class="svc-text">Организую внутренние процессы: от найма до KPI. Нахожу узкие места там, где их не замечали годами.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">operations</span>
-        <span class="svc-tag">KPI</span>
-        <span class="svc-tag">processes</span>
-      </div>
-    </div>
-    <div class="svc reveal">
-      <div class="svc-n">function_03</div>
-      <div class="svc-title">Digital и автоматизация</div>
-      <p class="svc-text">SMM, Tilda, amoCRM, чат-боты, ИИ-инструменты. Перевожу бизнес в цифру без боли и с результатом.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">amoCRM</span>
-        <span class="svc-tag">chatbots</span>
-        <span class="svc-tag">AI</span>
-        <span class="svc-tag">automation</span>
-      </div>
-    </div>
-    <div class="svc reveal">
-      <div class="svc-n">function_04</div>
-      <div class="svc-title">Vibe-coding · AI-разработка</div>
-      <p class="svc-text">Строю приложения с помощью ИИ: Cursor, Vercel, Supabase, API. Архитектура, промптинг, отладка. Прототип → рабочий продукт без классической разработки.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">cursor</span>
-        <span class="svc-tag">vercel</span>
-        <span class="svc-tag">vibe_coding</span>
-        <span class="svc-tag">AI_apps</span>
-      </div>
-    </div>
-    <div class="svc reveal">
-      <div class="svc-n">function_05</div>
-      <div class="svc-title">Здоровье · AI-продукт</div>
-      <p class="svc-text">Нутрициолог. −40 кг личный опыт. Строю Ai-ассистента по здоровью на основе данных. Ищу партнёров и инвесторов для масштабирования.</p>
-      <div class="svc-tags">
-        <span class="svc-tag">nutrition</span>
-        <span class="svc-tag">biohacking</span>
-        <span class="svc-tag">investor_ready</span>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+  </section>
 
-<!-- TIMELINE -->
-<section id="timeline">
-  <div class="sec-label reveal">system.log</div>
-  <h2 class="reveal">История<br><span class="accent">процессов</span></h2>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2000 — 2005 // boot_sector</div>
-      <div class="tl-title">IT-оборудование · первый бизнес</div>
-      <p class="tl-text">Торговля комплектующими и сборка ПК. Первый опыт построения бизнес-процессов с нуля.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2005 — 2010 // event.module</div>
-      <div class="tl-title">Event-агентство · мероприятия разного формата</div>
-      <p class="tl-text">Свадьбы, корпоративы, городские праздники. Организовывал мероприятия от камерных до масштабных — с аудиторией до 5 000 человек.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2010 — 2018 // digital.core</div>
-      <div class="tl-title">SMM-агентство · digital полный цикл</div>
-      <p class="tl-text">Реклама, сайты, amoCRM, автоматизация продаж. Управление командой, стратегии продвижения.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2018 — 2021 // food.service</div>
-      <div class="tl-title">Кофейня + пиццерия</div>
-      <p class="tl-text">Два заведения с нуля. Доставка, банкетный зал, операционное управление.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2021 — 2025 // logistics.daemon</div>
-      <div class="tl-title">Руководитель логистики · Москва</div>
-      <p class="tl-text">Доставка по Москве и области. Команда курьеров и водителей. Координация поставок в сеть чайных.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2025 → // ai.launch</div>
-      <div class="tl-title">ИИ-приложение · новый этап</div>
-      <p class="tl-text">ИИ-коуч по здоровью с персональной аналитикой. Cursor, Vercel, Supabase. Открыт к интересным предложениям.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PERSONAL -->
-<div class="sec-full">
-<div class="inner" id="personal">
-  <div class="sec-label reveal">values.config</div>
-  <h2 class="reveal">Что<br><span class="accent">движет</span></h2>
-  <div class="personal-grid">
-    <div class="personal-text reveal">
-      <p>Люблю технологии и Ai — как инструмент и формат мышления. Системный подход применяю везде: от архитектуры приложения до режима питания и образа жизни.</p>
-      <div class="personal-quote">
-        "Погружаюсь в проект полностью — сканирую все варианты развития событий, замечаю детали которые другие не видят"
+  <!-- ======================= EXPERT ======================= -->
+  <section id="expert" class="expert">
+    <div class="expert__inner">
+      <div class="expert__media reveal">
+        <img src="photo.jpg" alt="Андрей Комков — автоматизация бизнеса, разработка Telegram-ботов">
       </div>
-      <p>Путешествия и горы — способ перезагрузки и перспективы. Изучение себя через биохакинг, данные и нутрициологию.</p>
-      <p>Мне 45 и я чувствую себя лучше, чем в 30. −40 кг — не диета, а система.</p>
-    </div>
-    <div class="skills-block reveal">
-      <div class="skills-title"># core_competencies</div>
-      <div class="skill-row">
-        <span class="skill-name">системное_мышление</span>
-        <div class="skill-bar-wrap" data-w="95"><div class="skill-bar" style="--w:95%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">управление_проектами</span>
-        <div class="skill-bar-wrap" data-w="90"><div class="skill-bar" style="--w:90%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">автоматизация</span>
-        <div class="skill-bar-wrap" data-w="85"><div class="skill-bar" style="--w:85%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">vibe_coding / AI</span>
-        <div class="skill-bar-wrap" data-w="75"><div class="skill-bar" style="--w:75%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">аналитика</span>
-        <div class="skill-bar-wrap" data-w="88"><div class="skill-bar" style="--w:88%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">нутрициология</span>
-        <div class="skill-bar-wrap" data-w="70"><div class="skill-bar" style="--w:70%"></div></div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- CASE STUDY -->
-<section id="case" style="border-top:1px solid var(--green-border);">
-  <div class="sec-label reveal">case_study</div>
-  <h2 class="reveal">Мой <span class="accent">проект</span></h2>
-  <div class="case-grid">
-    <div class="case-screen reveal">
-      <img src="screen1.jpeg" alt="AI-нутрициолог — главный экран" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
-      <div class="screen-label">// main_screen</div>
-    </div>
-    <div class="case-screen reveal">
-      <img src="screen2.jpeg" alt="AI-нутрициолог — аналитика" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
-      <div class="screen-label">// analytics_screen</div>
-    </div>
-    <div class="case-info reveal" style="grid-column:1/-1;">
-      <div>
-        <span class="case-tag">MVP · early_version</span>
-        <div class="case-title" style="margin-top:12px;">ИИ-нутрициолог / Коуч / Тренер</div>
-      </div>
-      <p class="case-desc">Приложение, которое анализирует данные пользователя и даёт точечные персональные рекомендации. Помогает постепенно менять образ жизни и интегрировать новые привычки — не шоком, а системно.</p>
-      <div class="case-features">
-        <div class="case-feature">Персональный анализ на основе данных пользователя</div>
-        <div class="case-feature">ИИ-рекомендации по питанию, движению и восстановлению</div>
-        <div class="case-feature">Постепенное внедрение привычек без срывов</div>
-        <div class="case-feature">Трекинг прогресса и адаптация плана в реальном времени</div>
-      </div>
-      <div class="case-investor">
-        <span style="color:var(--green);opacity:.7;">// investor_mode: </span>active<br>
-        Ищу инвесторов и партнёров для развития продукта. Есть работающий MVP, концепция и личная экспертиза в теме.
-        <div style="margin-top:12px;">
-          <a href="https://t.me/komkof" target="_blank" style="color:var(--green);text-decoration:none;font-size:11px;border-bottom:1px solid rgba(0,232,122,0.3);padding-bottom:1px;">→ обсудить в Telegram</a>
+      <div class="reveal" data-delay="0.08">
+        <div class="eyebrow">Кто будет делать</div>
+        <h2 class="h2">Андрей Комков</h2>
+        <p class="lead">25 лет строю системы и бизнес-процессы — от digital-агентства и собственного общепита до управления логистикой. Везде первым делом вижу, что можно упростить и автоматизировать.</p>
+        <p class="lead">Сейчас разрабатываю на современном стеке (Cursor, Vercel, Supabase, AI) и сам строю AI-приложение. Делаю не «как принято», а так, чтобы приносило результат вашему бизнесу.</p>
+        <div class="expert__stats">
+          <div><div class="stat__num" data-count="25" data-post="+&nbsp;лет">25+&nbsp;лет</div><div class="stat__label">в бизнесе и digital</div></div>
+          <div><div class="stat__num" data-count="5" data-post="+">5+</div><div class="stat__label">запущенных бизнесов</div></div>
+          <div><div class="stat__num stat__num--accent" data-count="2" data-post="&nbsp;нед.">2&nbsp;нед.</div><div class="stat__label">средний срок запуска</div></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="sec-label reveal">connect()</div>
-  <h2 class="reveal">Давайте<br><span class="accent">работать</span></h2>
-  <div class="contact-grid">
-    <div>
-      <div class="contact-text reveal">
-        <p>Если есть проект, которому нужен человек с опытом — напишите. Отвечаю быстро и говорю прямо.</p>
+  <!-- ======================= FAQ ======================= -->
+  <section id="faq" class="faq">
+    <div class="faq__inner">
+      <div class="section-head reveal">
+        <div class="eyebrow">Частые вопросы</div>
+        <h2 class="h2 h2--xl">Коротко о главном</h2>
       </div>
-      <div class="contact-links">
-        <a class="contact-link reveal" href="https://t.me/komkof" target="_blank">
-          <div class="contact-icon">✈</div>
-          <div>
-            <div class="contact-type">telegram</div>
-            <div class="contact-val">@komkof</div>
-          </div>
-        </a>
-
-        <a class="contact-link reveal" href="mailto:andrey.komkof@yandex.ru">
-          <div class="contact-icon">@</div>
-          <div>
-            <div class="contact-type">email</div>
-            <div class="contact-val">andrey.komkof@yandex.ru</div>
-          </div>
-        </a>
+      <div class="faq__list">
+        <div class="qa reveal"><h3>Сколько стоит разработка Telegram-бота?</h3><p>Цена зависит от логики и интеграций. Простой бот для записи клиентов или приёма заявок — недорого и быстро; сложная система с CRM и оплатами — отдельный расчёт. На бесплатной консультации называю вилку под вашу задачу.</p></div>
+        <div class="qa reveal"><h3>Чем AI-консультант лучше обычного чата?</h3><p>Он понимает вопрос своими словами, отвечает по вашей базе знаний и доводит клиента до заявки, а не просто пересылает оператору. Сайт с AI-консультантом работает 24/7 и снимает нагрузку с поддержки.</p></div>
+        <div class="qa reveal"><h3>У меня уже есть сайт и CRM. Сможете подключить?</h3><p>Да. Автоматизация процессов как раз про то, чтобы связать то, что у вас уже есть, в единую систему — без переездов и потери данных.</p></div>
+        <div class="qa qa--last reveal"><h3>Как быстро увижу результат?</h3><p>Большинство решений по автоматизации продаж и поддержки запускаю за 1–2 недели. Эффект — меньше ручной работы и потерянных заявок — заметен с первых дней.</p></div>
       </div>
     </div>
-    <div class="contact-box reveal">
-      <div class="contact-box-title">// Открыт к сотрудничеству</div>
-      <p><span class="status-dot"></span>Статус: доступен прямо сейчас</p>
-      <p>Удалённо по всей России. Локально — Сириус / Красная Поляна / Роза Хутор.</p>
-      <p>Найм или фриланс — рассматриваю оба формата.</p>
+  </section>
+
+  <!-- ======================= CTA ======================= -->
+  <section id="contact" class="cta">
+    <div class="cta__inner reveal">
+      <h2 class="cta__title">Расскажите о задаче — предложу решение</h2>
+      <p class="cta__lead">Бесплатная консультация без обязательств. Разберём процессы и поймём, что автоматизировать в первую очередь.</p>
+      <div class="cta__actions">
+        <a href="https://t.me/komkof" target="_blank" class="btn btn--white">✈ Написать в Telegram @komkof</a>
+        <a href="mailto:andrey.komkof@yandex.ru" class="btn btn--outline">andrey.komkof@yandex.ru</a>
+      </div>
+      <div class="cta__status"><span class="dot dot--light"></span>Отвечаю быстро · удалённо по всей России</div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="footer-l">komkov.sys // v2026.1</div>
-  <div class="footer-r">SIRIUS · RU · 43.5855° N</div>
-</footer>
+  <footer class="footer">
+    <span class="footer__brand">Андрей Комков · Автоматизация бизнеса</span>
+    <span>© 2026 · Сириус, RU · Telegram @komkof</span>
+  </footer>
 
-<script>
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
-});
-
-function toggleMenu(){
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-function closeMenu(){
-  document.getElementById('mobileMenu').classList.remove('open');
-}
-
-const obs = new IntersectionObserver((entries)=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){
-      setTimeout(()=>e.target.classList.add('visible'), i*80);
-      obs.unobserve(e.target);
-    }
-  });
-},{threshold:.1});
-
-document.querySelectorAll('.reveal,.tl-item').forEach(el=>obs.observe(el));
-
-// Skill bars
-const barObs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('loaded');
-      barObs.unobserve(e.target);
-    }
-  });
-},{threshold:.3});
-
-document.querySelectorAll('.skill-bar-wrap').forEach(el=>barObs.observe(el));
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
