@@ -142,8 +142,8 @@ img { display: block; max-width: 100%; }
 .cta__status { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; font-weight: 600; color: #fff; opacity: .92; }
 
 /* ---------- FOOTER ---------- */
-.footer { background: var(--bg-alt); padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; color: var(--muted-2); font-size: 14px; }
-.footer__brand { font-weight: 600; color: var(--ink); }
+.footer-social-link:hover { color: #1D1D1F; }
+.footer-email-link:hover { color: var(--accent); }
 
 /* ---------- reveal-on-scroll ---------- */
 /* контент виден по умолчанию; скрываем только при работающем JS (класс .js на <html>) */
