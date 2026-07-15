@@ -1,0 +1,15 @@
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden;width:100%}
+    body{margin:0;background:#0a0e14;overflow-x:hidden;width:100%}
+    ::selection{background:#4f8cff55}
+    @keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-14px)}100%{transform:translateY(0)}}
+    @keyframes floatY2{0%{transform:translateY(0)}50%{transform:translateY(12px)}100%{transform:translateY(0)}}
+    @keyframes pulseDot{0%,100%{opacity:.4}50%{opacity:1}}
+    @media (max-width: 860px){ [data-cases-grid]{ grid-template-columns:1fr !important; } }
+    @media (max-width: 860px){
+      [data-desktop-nav]{ display:none !important; }
+      [data-mobile-burger]{ display:flex !important; }
+    }
+    @media (min-width: 861px){ [data-mobile-menu-panel]{ display:none !important; } }
+  
