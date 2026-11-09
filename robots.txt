@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://komkof.ru/sitemap.xml
