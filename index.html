@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Performance-маркетолог в Сочи: Яндекс Директ, SEO, аналитика | Андрей Комков</title>
+<meta name="description" content="Performance-маркетолог и директолог. Сайт, Яндекс Директ, таргет ВК, SEO и аналитика в одном комплексе. 15 лет в digital. Работаю из Сочи, удалённо по всей России.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light only">
+<link rel="canonical" href="https://komkof.ru/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23D9480F'/%3E%3Ctext x='32' y='45' font-size='36' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EА%3C/text%3E%3C/svg%3E">
+
+<!-- Open Graph / соцсети -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Андрей Комков — performance-маркетолог">
+<meta property="og:title" content="Комплексное продвижение под ключ: от анализа сайта до целевого трафика и заявок">
+<meta property="og:description" content="Сайт, Яндекс Директ, таргет ВК, SEO и аналитика в одном комплексе. 15 лет в digital.">
+<meta property="og:url" content="https://komkof.ru/">
+<meta property="og:image" content="https://komkof.ru/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" as="image" href="hero.webp" type="image/webp" fetchpriority="high">
+<script>document.documentElement.className='js'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#fff; --soft:#F5F7FA; --ink:#101828; --muted:#566070; --line:#E3E8EF;
+  --accent:#D9480F; --accent-d:#B83B0A; --tint:#FFF1E8; --ok:#0B7A4B; --ok-tint:#E6F5EE;
+  --hdr:64px; color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:#fff;scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 8px)}
+body{margin:0;background:var(--bg);color:var(--ink);overflow-x:hidden;
+  font:17px/1.65 Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{margin:0;line-height:1.12;letter-spacing:-.02em;font-weight:800}
+h1{font-size:clamp(34px,8.5vw,60px)}
+h2{font-size:clamp(28px,6vw,42px);margin-bottom:12px}
+h3{font-size:19px;line-height:1.25;letter-spacing:-.01em;font-weight:700;margin-bottom:6px}
+p{margin:0 0 14px}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+section{padding:56px 0}
+.soft{background:var(--soft)}
+.eyebrow{display:inline-block;color:var(--accent);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px}
+.sec-lead{color:var(--muted);font-size:18px;max-width:54ch;margin-bottom:32px}
+.muted{color:var(--muted)}
+
+/* Кнопки */
+.btn{display:inline-block;text-align:center;background:var(--accent);color:#fff;font:700 17px Manrope,system-ui,sans-serif;
+  padding:15px 28px;border:0;border-radius:12px;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--accent-d);transform:translateY(-2px)}
+.btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn.ghost:hover{background:var(--soft)}
+
+/* Шапка */
+.hdr{position:sticky;top:0;z-index:30;height:var(--hdr);background:#fff;border-bottom:1px solid var(--line)}
+.hdr .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;color:var(--ink);text-decoration:none;font-size:19px}
+.logo span{font-weight:500;color:var(--muted);font-size:14.5px;margin-left:8px}
+.nav{display:flex;align-items:center;gap:24px}
+.nav a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:600}
+.nav a:hover{color:var(--accent)}
+.nav .pill{background:var(--accent);color:#fff;padding:9px 18px;border-radius:10px}
+.nav .pill:hover{background:var(--accent-d);color:#fff}
+.burger{display:none;width:44px;height:44px;border:0;background:none;padding:0;cursor:pointer}
+.burger i,.burger i::before,.burger i::after{display:block;width:22px;height:2px;background:var(--ink);margin:0 auto;position:relative;transition:transform .2s,background .2s}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0}
+.burger i::before{top:-7px}.burger i::after{top:7px}
+.open .burger i{background:transparent}
+.open .burger i::before{transform:translateY(7px) rotate(45deg)}
+.open .burger i::after{transform:translateY(-7px) rotate(-45deg)}
+
+/* Первый экран */
+.hero{padding:28px 0 40px}
+.hero-grid{display:grid;gap:32px}
+.hero h1{font-size:clamp(30px,7.2vw,46px);line-height:1.14}
+.hero .lead{font-size:clamp(18px,4.4vw,21px);color:var(--muted);line-height:1.5;margin:18px 0 26px;max-width:50ch}
+.cta-row{display:flex;flex-direction:column;gap:12px}
+.note{display:flex;gap:10px;align-items:flex-start;margin-top:22px;font-size:14.5px;color:var(--muted);line-height:1.5}
+.note::before{content:"i";flex:none;width:22px;height:22px;border-radius:50%;background:var(--tint);color:var(--accent);
+  font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:1px}
+.photo{position:relative;margin:0 auto;width:100%;max-width:440px}
+.photo::before{content:"";position:absolute;inset:18px -14px -14px 18px;border-radius:32px;background:var(--tint);z-index:0}
+.photo picture,.photo img{display:block;width:100%;height:auto}
+.photo img{position:relative;z-index:1;border-radius:28px;aspect-ratio:4/5;object-fit:cover}
+.photo figcaption{position:absolute;z-index:2;left:12px;bottom:-16px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:10px 16px;font-size:14px;font-weight:600;box-shadow:0 12px 30px -16px rgba(16,24,40,.4);line-height:1.35}
+.photo figcaption span{display:block;color:var(--muted);font-weight:500;font-size:13px}
+
+/* Цифры */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:12px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.stat b{display:block;font-size:30px;line-height:1;font-weight:800;color:var(--accent);margin-bottom:8px;letter-spacing:-.02em}
+.stat span{font-size:14.5px;color:var(--muted);line-height:1.4;display:block}
+
+/* Проблемы */
+.pain{display:flex;flex-wrap:wrap;gap:10px}
+.pain li{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 18px;font-weight:600;font-size:16.5px}
+.pain-end{margin-top:22px;font-weight:600;max-width:46ch}
+
+/* Услуга: карточки */
+.cards{display:grid;gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+.card .n{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--tint);color:var(--accent);font-weight:800;margin-bottom:16px}
+.card p{color:var(--muted);margin:0;font-size:16px}
+.soft .card{border-color:transparent}
+
+/* Шаги */
+.steps{display:grid;gap:0}
+.step{position:relative;padding:0 0 28px 64px}
+.step::before{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--line)}
+.step:last-child::before{display:none}
+.step .num{position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-weight:800}
+.step p{color:var(--muted);margin:0;font-size:16px}
+
+/* Детали */
+.panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,40px)}
+.checks{display:grid;gap:14px}
+.checks li{position:relative;padding-left:34px;line-height:1.5}
+.checks li::before{content:"✓";position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:50%;
+  background:var(--ok-tint);color:var(--ok);display:grid;place-items:center;font-size:14px;font-weight:800}
+
+/* Кейс */
+.case{display:grid;gap:24px}
+.tag{display:inline-block;background:var(--tint);color:var(--accent-d);font-weight:700;font-size:13.5px;padding:5px 12px;border-radius:99px;margin-bottom:14px}
+
+/* Честно */
+.honest{background:var(--ok-tint);border-radius:24px;padding:clamp(24px,5vw,48px);border-left:6px solid var(--ok)}
+.honest h2{margin-bottom:14px}
+.honest > p{max-width:62ch;font-size:18px}
+.honest .checks{margin-top:22px}
+
+/* Для кого, чипсы */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chips li{background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 16px;font-weight:600;font-size:15.5px}
+.soft .chips li{border-color:transparent}
+
+/* Обо мне */
+.about{display:grid;gap:32px;align-items:center}
+.about .photo{max-width:380px}
+.about .photo::before{inset:14px 14px -14px -14px}
+.facts{display:grid;gap:12px;margin:22px 0}
+.facts li{padding-left:22px;position:relative}
+.facts li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+
+/* FAQ */
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;font-weight:700;font-size:18px;padding:18px 40px 18px 0;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:28px;font-weight:500;color:var(--accent)}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin:0 0 18px;max-width:64ch}
+
+/* Контакт */
+.contact{background:var(--tint);border-radius:28px;padding:clamp(24px,5vw,56px);display:grid;gap:28px}
+label{display:block;margin-bottom:14px;font-size:14.5px;color:var(--muted);font-weight:600}
+input,textarea{display:block;width:100%;padding:14px;margin-top:6px;font:inherit;font-weight:500;color:var(--ink);
+  border:1.5px solid var(--line);border-radius:12px;background:#fff}
+textarea{min-height:90px;resize:vertical}
+.consent{display:flex;gap:12px;align-items:flex-start;margin:4px 0 18px;font-size:14px;line-height:1.45;font-weight:500;color:var(--muted);cursor:pointer}
+.consent input{flex:none;width:22px;height:22px;margin:1px 0 0;padding:0;accent-color:var(--accent);cursor:pointer}
+.consent a{color:var(--ink);font-weight:600}
+form .btn{width:100%}
+.links{display:grid;gap:10px;margin-top:22px}
+.links a{font-weight:700;font-size:18px;text-decoration:none;color:var(--ink)}
+.links a span{color:var(--muted);font-weight:500;font-size:14.5px;display:block}
+.links a:hover{color:var(--accent)}
+.hint{font-size:13.5px;color:var(--muted);margin:12px 0 0;line-height:1.45}
+footer{padding:28px 0 40px;font-size:14.5px;color:var(--muted)}
+
+/* Мобильное меню */
+@media(max-width:879px){
+  .logo span{display:none}
+  .js .burger{display:block}
+  .js .nav{position:absolute;top:var(--hdr);left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;
+    background:#fff;border-bottom:1px solid var(--line);padding:6px 20px 20px;box-shadow:0 20px 30px -20px rgba(16,24,40,.3)}
+  .js .open .nav{display:flex}
+  .nav a{padding:14px 0;font-size:18px;border-bottom:1px solid var(--line)}
+  .nav .pill{margin-top:16px;text-align:center;border:0;padding:15px}
+}
+/* Планшет */
+@media(min-width:640px){
+  .cta-row{flex-direction:row;flex-wrap:wrap}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .cards{grid-template-columns:1fr 1fr}
+  .checks.two{grid-template-columns:1fr 1fr;gap:14px 36px}
+}
+/* Десктоп */
+@media(min-width:880px){
+  body{font-size:18px}
+  section{padding:88px 0}
+  .hero{padding:48px 0 56px}
+  .hero-grid{grid-template-columns:1.15fr .85fr;gap:72px;align-items:center}
+  .cards{grid-template-columns:repeat(6,1fr);gap:16px}
+  .card{grid-column:span 2}
+  .card:nth-child(n+4){grid-column:span 3}
+  .steps{grid-template-columns:repeat(5,1fr);gap:20px}
+  .step{padding:0}
+  .step::before{left:52px;right:-20px;top:21px;bottom:auto;width:auto;height:2px}
+  .step .num{position:relative;margin-bottom:16px}
+  .case{grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+  .about{grid-template-columns:.8fr 1.2fr;gap:72px}
+  .contact{grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.burger i,.burger i::before,.burger i::after{transition:none}}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"Андрей Комков — performance-маркетолог",
+  "url":"https://komkof.ru/",
+  "image":"https://komkof.ru/og.jpg",
+  "description":"Performance-маркетолог и директолог. Комплексная работа над потоком заявок из интернета: сайт, Яндекс Директ, таргет ВКонтакте, SEO, аналитика и сопровождение.",
+  "email":"andrey.komkof@ya.ru",
+  "address":{"@type":"PostalAddress","addressLocality":"Сочи","addressCountry":"RU"},
+  "areaServed":"RU",
+  "sameAs":["https://t.me/komkof"],
+  "knowsAbout":["Яндекс Директ","VK Реклама","SEO","Яндекс Метрика","Веб-аналитика","Performance-маркетинг","Контекстная реклама","Таргетированная реклама"],
+  "makesOffer":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Настройка и ведение Яндекс Директ"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Таргетированная реклама ВКонтакте"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"SEO-оптимизация сайта"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Веб-аналитика и сквозная аналитика"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Создание сайта или лендинга под рекламу"}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Что, если сайт уже есть?","acceptedAnswer":{"@type":"Answer","text":"Проверю его в аудите. Хороший сайт оставим, слабый улучшим или создадим новый."}},
+    {"@type":"Question","name":"Вы гарантируете заявки?","acceptedAnswer":{"@type":"Answer","text":"Нет. Количество заявок зависит от рынка, цены, предложения и конкуренции. Я гарантирую прозрачную работу, понятную аналитику и постоянную оптимизацию."}},
+    {"@type":"Question","name":"Сколько стоит реклама и ваша работа?","acceptedAnswer":{"@type":"Answer","text":"Рекламный бюджет вы платите площадкам напрямую. Стоимость моей работы зависит от задач и объёма, я называю её после аудита."}},
+    {"@type":"Question","name":"Когда будут первые заявки?","acceptedAnswer":{"@type":"Answer","text":"Первые обращения обычно приходят вскоре после запуска рекламы. Стабильный результат появляется после нескольких недель оптимизации. Точные сроки называю после аудита."}},
+    {"@type":"Question","name":"Кабинеты и сайт будут моими?","acceptedAnswer":{"@type":"Answer","text":"Да, рекламные кабинеты, аналитика и сайт оформляются на вас."}},
+    {"@type":"Question","name":"Работаете с моей нишей?","acceptedAnswer":{"@type":"Answer","text":"Есть опыт в услугах, туризме, спорте, общепите и e-commerce. Если сомневаетесь, напишите, я честно скажу, подходит ли вам такая работа."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Андрей Комков, performance-маркетолог. Наверх">Андрей Комков<span>performance-маркетолог</span></a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav"><i></i></button>
+    <nav class="nav" id="nav" aria-label="Разделы сайта">
+      <a href="#service">Услуга</a>
+      <a href="#process">Как работаю</a>
+      <a href="#case">Пример</a>
+      <a href="#about">Обо мне</a>
+      <a href="#faq">Вопросы</a>
+      <a class="pill" href="#contact">Написать</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 1. Первый экран -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Performance-маркетолог · директолог</span>
+      <h1>Комплексное продвижение под ключ: от анализа сайта до целевого трафика и заявок</h1>
+      <p class="lead">Беру на себя весь комплекс по продвижению: сайт, аналитику, рекламу и SEO. Консультирую по IT, подбору ПО, настройке и учёту, автоматизации процессов. Вам не нужно координировать подрядчиков: за каждый этап отвечаю я, а вы спокойно занимаетесь бизнесом.</p>
+      <div class="cta-row">
+        <a class="btn" href="#contact">Заказать разбор бизнеса</a>
+        <a class="btn ghost" href="#contact">Консультация</a>
+      </div>
+    </div>
+    <figure class="photo" style="margin-bottom:24px">
+      <picture>
+        <source srcset="hero.webp" type="image/webp">
+        <img src="hero.jpg" width="800" height="1000" alt="Андрей Комков, performance-маркетолог и директолог" fetchpriority="high" decoding="async">
+      </picture>
+    </figure>
+  </div>
+</section>
+
+<!-- 2. Цифры -->
+<div class="wrap">
+  <ul class="stats" aria-label="Опыт в цифрах">
+    <li class="stat"><b>15 лет</b><span>в интернет-маркетинге</span></li>
+    <li class="stat"><b>8+ лет</b><span>в digital-агентстве</span></li>
+    <li class="stat"><b>до 5</b><span>клиентских проектов одновременно</span></li>
+    <li class="stat"><b>AI</b><span>агенты в работе: отчёты, тексты, аналитика</span></li>
+  </ul>
+</div>
+
+<!-- 3. Знакомо? -->
+<section>
+  <div class="wrap">
+    <h2>Знакомо?</h2>
+    <ul class="pain" style="margin-top:24px">
+      <li>Сайт есть, заявок нет</li>
+      <li>Сайта нет, непонятно, с чего начать</li>
+      <li>Реклама запущена, но не видно, сколько стоит заявка</li>
+      <li>Бюджет уходит на нецелевые запросы</li>
+      <li>Подрядчики работают каждый сам по себе</li>
+    </ul>
+    <p class="pain-end">Обычно дело не в одном инструменте, а в том, что сайт, реклама и аналитика не связаны. Я собираю их в одну систему.</p>
+  </div>
+</section>
+
+<!-- 4. Что входит в услугу -->
+<section class="soft" id="service">
+  <div class="wrap">
+    <span class="eyebrow">Услуга</span>
+    <h2>Комплексная работа над вашим проектом</h2>
+    <p class="sec-lead">Не отдельные настройки, а вся цепочка в одних руках.</p>
+    <div class="cards">
+      <article class="card"><div class="n">1</div><h3>Сайт</h3><p>Проверяю текущий или создаю новый под вашу услугу.</p></article>
+      <article class="card"><div class="n">2</div><h3>Трафик</h3><p>Яндекс Директ, VK Реклама, Avito, соцсети и др.</p></article>
+      <article class="card"><div class="n">3</div><h3>Бесплатный трафик</h3><p>SEO-оптимизация сайта и статьи под целевые запросы.</p></article>
+      <article class="card"><div class="n">4</div><h3>Аналитика</h3><p>Цели в Яндекс Метрике, UTM-разметка, сквозная аналитика.</p></article>
+      <article class="card"><div class="n">5</div><h3>Сопровождение</h3><p>Оптимизация по стоимости заявки, отчёты каждую неделю.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Как я работаю -->
+<section id="process">
+  <div class="wrap">
+    <span class="eyebrow">Процесс</span>
+    <h2 style="margin-bottom:32px">Как я работаю</h2>
+    <ol class="steps">
+      <li class="step"><span class="num">1</span><h3>Аудит</h3><p>Смотрю бизнес, сайт, рекламу, конкурентов и данные. Нахожу, где теряются заявки.</p></li>
+      <li class="step"><span class="num">2</span><h3>Сайт</h3><p>Если сайт подходит, улучшаю. Если нет или его нет, создаю новый и оптимизирую под поиск.</p></li>
+      <li class="step"><span class="num">3</span><h3>Запуск</h3><p>Настраиваю аналитику и рекламные кампании. Проверяю, что каждая заявка отслеживается.</p></li>
+      <li class="step"><span class="num">4</span><h3>Оптимизация</h3><p>Чищу запросы, тестирую объявления, перераспределяю бюджет туда, где заявка дешевле.</p></li>
+      <li class="step"><span class="num">5</span><h3>Отчёты</h3><p>Каждую неделю присылаю цифры: расход, заявки, цена заявки. Простым языком.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 6. Детали -->
+<section class="soft">
+  <div class="wrap">
+    <span class="eyebrow">Детали</span>
+    <h2 style="margin-bottom:28px">На чём держится результат</h2>
+    <div class="panel">
+      <ul class="checks two">
+        <li>Чистка поисковых запросов и минус-слова, чтобы бюджет не уходил на «случайных» людей</li>
+        <li>Цели в Яндекс Метрике и UTM-метки на каждый источник</li>
+        <li>Планирование и распределение бюджета между каналами</li>
+        <li>A/B-тесты объявлений</li>
+        <li>Связка заявок с CRM и воронкой продаж, если она у вас есть</li>
+        <li>Автоматизация отчётов и подготовки текстов с помощью нейросетей</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Пример работы -->
+<section id="case">
+  <div class="wrap case">
+    <div>
+      <span class="tag">Пример работы</span>
+      <h2>Школа горных лыж и сноуборда</h2>
+      <p class="muted">Красная Поляна, Сочи</p>
+    </div>
+    <div>
+      <ul class="checks">
+        <li>Запустил и веду рекламу в Яндекс Директ: поиск, чистка запросов, минус-слова</li>
+        <li>Оптимизирую кампании по стоимости заявки</li>
+        <li>Настроил цели в Метрике и UTM-разметку для сквозной аналитики</li>
+        <li>Оптимизирую сайт и пишу статьи под целевые запросы, чтобы приводить бесплатный трафик</li>
+        <li>Каждую неделю отчитываюсь о расходе и заявках</li>
+      </ul>
+      <!-- Когда будут цифры и согласие клиента, добавьте здесь абзац:
+      <p style="margin-top:20px"><strong>Результат:</strong> N заявок за период, цена заявки X ₽.</p> -->
+    </div>
+  </div>
+</section>
+
+<!-- 8. Честно о результатах -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="honest">
+      <h2>Честно о результатах</h2>
+      <p>Гарантировать конкретное число заявок нельзя: результат зависит от рынка, цены, предложения и конкуренции. Поэтому я не обещаю цифры, а гарантирую другое:</p>
+      <ul class="checks two">
+        <li>Аналитика настроена до запуска рекламы</li>
+        <li>Вы видите, на что уходит каждый рубль</li>
+        <li>Реклама оптимизируется постоянно, а не «запустил и забыл»</li>
+        <li>Если что-то не работает, я скажу об этом первым и предложу, что менять</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Кому подходит -->
+<section class="soft">
+  <div class="wrap">
+    <h2>Кому подходит</h2>
+    <p class="sec-lead" style="margin-bottom:0">Малому и среднему бизнесу, которому нужны клиенты из интернета: тем, кто начинает, тем, у кого реклама не окупается.</p>
+    <ul class="chips">
+      <li>Мероприятия</li><li>Услуги</li><li>Туризм</li><li>Спорт и фитнес</li><li>Локальные сервисы</li><li>E-commerce</li><li>Общепит</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10. Обо мне -->
+<section id="about">
+  <div class="wrap about">
+    <figure class="photo" style="margin-bottom:0">
+      <picture>
+        <source srcset="about.webp" type="image/webp">
+        <img src="about.jpg" width="800" height="1000" alt="Андрей Комков, performance-маркетолог" loading="lazy" decoding="async">
+      </picture>
+    </figure>
+    <div>
+      <span class="eyebrow">Обо мне</span>
+      <h2 style="margin-bottom:18px">Андрей Комков, performance-маркетолог и директолог</h2>
+      <p>15 лет в интернет-маркетинге. Больше 8 лет в digital-агентстве: вёл до пяти клиентских проектов одновременно, строил стратегии, запускал рекламу, руководил командой из десяти и более специалистов.</p>
+      <ul class="facts">
+        <li>Внедрял CRM и строил воронки продаж для сквозной аналитики</li>
+        <li>Сам запускал и продвигал собственный бизнес, поэтому понимаю, что для вас значит каждая заявка</li>
+        <li>Использую нейросети и автоматизацию, чтобы работать быстрее и точнее</li>
+      </ul>
+      <p class="muted" style="margin-bottom:8px;font-size:15px;font-weight:600">Инструменты</p>
+      <ul class="chips" style="margin-top:0">
+        <li>Яндекс Директ</li><li>VK Реклама</li><li>Яндекс Метрика</li><li>Google Analytics</li><li>amoCRM</li><li>SEO</li><li>UTM-разметка</li><li>Google Sheets</li><li>Ai</li><li>SMM</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 11. Вопросы -->
+<section class="soft" id="faq">
+  <div class="wrap" style="max-width:820px">
+    <h2 style="margin-bottom:24px">Вопросы</h2>
+    <details><summary>Что, если сайт уже есть?</summary><p>Проверю его в аудите. Хороший сайт оставим, слабый улучшим или создадим новый.</p></details>
+    <details><summary>Вы гарантируете заявки?</summary><p>Нет. Количество заявок зависит от рынка, цены, предложения и конкуренции. Я гарантирую прозрачную работу, понятную аналитику и постоянную оптимизацию.</p></details>
+    <details><summary>Сколько стоит реклама и ваша работа?</summary><p>Рекламный бюджет вы платите площадкам напрямую. Стоимость моей работы зависит от задач и объёма, я называю её после аудита.</p></details>
+    <details><summary>Когда будут первые заявки?</summary><p>Первые обращения обычно приходят вскоре после запуска рекламы. Стабильный результат появляется после нескольких недель оптимизации.</p></details>
+    <details><summary>Кабинеты и сайт будут моими?</summary><p>Да, рекламные кабинеты, аналитика и сайт оформляются на вас.</p></details>
+    <details><summary>Работаете с моей нишей?</summary><p>Есть опыт в продвижении мероприятий, услугах, туризме, спорте, общепите и e-commerce. Если сомневаетесь, напишите, я честно скажу, подходит ли вам такая работа.</p></details>
+  </div>
+</section>
+
+<!-- 12. Контакт -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <h2>Давайте посмотрим, как привлечь клиентов вашему бизнесу</h2>
+        <p class="muted">Напишите, чем занимаетесь, и пришлите ссылку на сайт, если он есть. Разберу ситуацию и предложу план.</p>
+        <div class="links">
+          <a href="https://t.me/komkof" rel="noopener">Telegram <span>t.me/komkof</span></a>
+          <a href="mailto:andrey.komkof@ya.ru">Почта <span>andrey.komkof@ya.ru</span></a>
+        </div>
+      </div>
+      <form id="lead" action="mailto:andrey.komkof@ya.ru" method="get">
+        <label>Имя<input type="text" id="f-name" autocomplete="name" required></label>
+        <label>Telegram или телефон<input type="text" id="f-contact" required></label>
+        <label>Ссылка на сайт (если есть)<input type="url" id="f-site" placeholder="https://"></label>
+        <label>Коротко о бизнесе<textarea id="f-about"></textarea></label>
+        <label class="consent"><input type="checkbox" id="f-consent" name="consent" required><span>Я даю согласие на обработку персональных данных и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label>
+        <button class="btn" type="submit">Отправить заявку</button>
+        <p class="hint">Откроется ваша почтовая программа с готовым письмом. Или просто напишите в Telegram.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">© <span id="y">2026</span> Андрей Комков · performance-маркетолог, директолог</div>
+</footer>
+
+<script>
+(function(){
+  var h=document.getElementById('hdr'),b=document.getElementById('burger'),n=document.getElementById('nav');
+  function set(o){h.classList.toggle('open',o);b.setAttribute('aria-expanded',o)}
+  b.addEventListener('click',function(){set(!h.classList.contains('open'))});
+  n.addEventListener('click',function(e){if(e.target.tagName==='A')set(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+  document.getElementById('y').textContent=new Date().getFullYear();
+  document.getElementById('lead').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return document.getElementById(id).value.trim()};
+    var body='Имя: '+v('f-name')+'\nКонтакт: '+v('f-contact')+'\nСайт: '+v('f-site')+'\n\nО бизнесе:\n'+v('f-about');
+    location.href='mailto:andrey.komkof@ya.ru?subject='+encodeURIComponent('Заявка на разбор бизнеса')+'&body='+encodeURIComponent(body);
+  });
+})();
+</script>
+</body>
+</html>
